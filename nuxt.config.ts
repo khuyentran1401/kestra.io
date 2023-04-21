@@ -1,4 +1,6 @@
 import codeImport from 'remark-code-import';
+import { resolve } from 'pathe';
+
 export default defineNuxtConfig({
     modules: [
         '@nuxt/devtools',
@@ -59,6 +61,13 @@ export default defineNuxtConfig({
                 'remark-code-import': {
                     instance: codeImport
                 },
+            }
+        },
+        sources: {
+            kestraApiStorage: {
+                prefix: '/plugins',
+                driver: resolve('utils', 'driver', 'kestraApiDriver.js'),
+                dir: 'content/plugins'
             }
         },
     },
