@@ -1,18 +1,17 @@
 <template>
     <div class="main">
         <div class="hero container text-center">
-            <p class="overline" data-aos="fade-left">OPEN SOURCE DECLARATIVE DATA ORCHESTRATION</p>
-            <h1 data-aos="fade-right">Simple and fast orchestration <br> without Python dependency hell<span class="dot">.</span></h1>
-            <div class="text-center cta">
-                <a href="https://demo.kestra.io/ui/login?auto" target="_blank" class="btn btn-lg btn-secondary me-2" data-aos="zoom-in">
-                    <Console /> Live Demo
+            <div class="text-block">
+                <p class="text-pink overline" data-aos="fade-right">OPEN SOURCE DECLARATIVE<br/>DATA ORCHESTRATION</p>
+                <h1 data-aos="fade-right">Simple and fast orchestration without Python dependency hell<span class="dot">.</span></h1>
+                <a href="https://demo.kestra.io/ui/login?auto" target="_blank" class="btn btn-secondary me-2" data-aos="zoom-in">
+                    <Console /> Try the live demo
                 </a>
-                <a href="#" class="btn btn-lg btn-primary" data-aos="zoom-in" data-bs-toggle="modal" data-bs-target="#home-intro">
-                    <PlayCircleOutline /> Product Video
+                <a href="#" class="btn btn-primary" data-aos="zoom-in" data-bs-toggle="modal" data-bs-target="#home-intro">
+                    <LightningBolt /> Get started
                 </a>
             </div>
-
-            <img class="img-fluid" src="/landing/home/animation.svg"  alt="Kestra's flow animation from source to visualization" />
+            <HeaderAnimation class="animation"/>
         </div>
 
         <div class="container text-center">
@@ -42,15 +41,13 @@
 <script>
     import Magnify from "vue-material-design-icons/Magnify.vue";
     import Console from "vue-material-design-icons/Console.vue"
-    import PlayCircleOutline from "vue-material-design-icons/PlayCircleOutline.vue"
+    import LightningBolt from "vue-material-design-icons/LightningBolt.vue"
     import GithubButton from "../layout/GithubButton.vue";
     import Companies from "../layout/Companies.vue";
     import HeaderAnimation from './HeaderAnimation.vue';
-    import ContentCopy from "vue-material-design-icons/ContentCopy.vue";
-    import Check from "vue-material-design-icons/Check.vue";
 
     export default {
-        components: {Console, Magnify, PlayCircleOutline, GithubButton, Companies, HeaderAnimation},
+        components: {Console, Magnify, LightningBolt, GithubButton, Companies, HeaderAnimation},
         data() {
             return {
                 videoVisible: false
@@ -63,21 +60,12 @@
     @import "../../assets/styles/variable";
 
     .main {
-        background: linear-gradient(160.34deg, rgba(130, 0, 255, 0.3) 5.3%, rgba(130, 0, 255, 0) 75.43%), #040114;
+        background: url("/landing/home/header-bg.svg") center no-repeat;
+        background-size: 100% 100%;
 
         > * {
             z-index:2;
             position: relative;
-        }
-
-        &:after {
-            background: url("/landing/home/header-bg.svg") center bottom no-repeat;
-            content:'';
-            position: absolute;
-            width: 100%;
-            height: 702px;
-            margin-top: -702px;
-            z-index: 1;
         }
 
         color: var(--bs-white);
@@ -85,23 +73,79 @@
         margin-top: -80px;
 
         .hero {
-            h1 {
-                max-width: 1024px;
+            display: flex;
+            margin: 0;
+            padding-top: calc(var(--spacer) * 4);
+            align-items: center;
+            justify-content: center;
+
+            .text-block {
+                text-align: left;
+                width: 25vw;
+                display: flex;
+                flex-direction: column;
+                gap: $spacer;
+                justify-items: left;
+
+                > * {
+                    margin-left: 0;
+                }
+
+                .overline {
+                    &::after {
+                        content: "";
+                        position: relative;
+                        top: calc(var(--spacer) / 2);
+                        width: 15%;
+                        height: 3px;
+                        background: var(--bs-pink);
+                        display: block;
+                    }
+                }
+
+                a {
+                    display: block;
+                    width: 60%;
+                }
+
+                h1 {
+                    font-size: $h2-font-size;
+                }
             }
 
-            p {
-                max-width: 1024px;
+            .animation {
+                position: relative;
+                width: 50vw;
             }
 
-            .cta {
-                padding-bottom: 0;
+            @include media-breakpoint-down(sm) {
+                flex-direction: column;
+
+                .text-block {
+                    width: 80vw;
+
+                    p.overline {
+                        margin: 0 auto;
+                        font-size: $font-size-sm;
+
+                        &::after {
+                            display: none !important;
+                        }
+                    }
+
+                    h1 {
+                        font-size: 1.625rem;
+
+                        .dot {
+                            font-size: 2.7rem;
+
+                            line-height: 0;
+                        }
+                    }
+                }
             }
         }
 
-        .animation {
-            max-width: 1300px;
-            margin: 0 auto;
-        }
         .companies-title {
             position: relative;
 
